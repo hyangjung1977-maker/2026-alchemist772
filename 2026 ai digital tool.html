@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 에듀테크 허브 - 7가지 카테고리와 80개+ 도구</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 전역 스타일 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* 헤더 */
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 i {
+            margin-right: 20px;
+            color: #ffd700;
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            font-weight: 400;
+            opacity: 0.95;
+        }
+
+        /* 메인 컨텐츠 */
+        .main-content {
+            position: relative;
+            min-height: 700px;
+        }
+
+        /* 중앙 학생 아이콘 */
+        .center-student {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .student-icon {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5);
+            margin: 0 auto 20px;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .student-icon i {
+            font-size: 4rem;
+            color: #764ba2;
+        }
+
+        .student-label {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* AI 역할 그리드 */
+        .ai-roles {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        /* AI 역할 카드 */
+        .ai-role {
+            background: white;
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-role::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+        }
+
+        .ai-role.tutor::before { background: linear-gradient(90deg, #ff6b6b, #ee5a6f); }
+        .ai-role.agent::before { background: linear-gradient(90deg, #4ecdc4, #44a08d); }
+        .ai-role.assistant::before { background: linear-gradient(90deg, #f7b731, #f79f1f); }
+        .ai-role.generative::before { background: linear-gradient(90deg, #a8e6cf, #56ab2f); }
+        .ai-role.facilitator::before { background: linear-gradient(90deg, #9b59b6, #8e44ad); }
+        .ai-role.coach::before { background: linear-gradient(90deg, #3498db, #2980b9); }
+        .ai-role.classroom::before { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+
+        .ai-role:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .role-character {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .ai-role.tutor .role-character { background: linear-gradient(135deg, #ff6b6b, #ee5a6f); }
+        .ai-role.agent .role-character { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .ai-role.assistant .role-character { background: linear-gradient(135deg, #f7b731, #f79f1f); }
+        .ai-role.generative .role-character { background: linear-gradient(135deg, #a8e6cf, #56ab2f); }
+        .ai-role.facilitator .role-character { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .ai-role.coach .role-character { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .ai-role.classroom .role-character { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+
+        .role-character i {
+            font-size: 3rem;
+            color: white;
+        }
+
+        .ai-role h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3436;
+            margin-bottom: 15px;
+        }
+
+        .role-description {
+            font-size: 1rem;
+            color: #636e72;
+            line-height: 1.7;
+            padding: 0 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 수업 포인트 */
+        .teaching-point {
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            text-align: left;
+            border-left: 4px solid #667eea;
+        }
+
+        .ai-role.tutor .teaching-point { border-left-color: #ff6b6b; }
+        .ai-role.agent .teaching-point { border-left-color: #4ecdc4; }
+        .ai-role.assistant .teaching-point { border-left-color: #f7b731; }
+        .ai-role.generative .teaching-point { border-left-color: #a8e6cf; }
+        .ai-role.facilitator .teaching-point { border-left-color: #9b59b6; }
+        .ai-role.coach .teaching-point { border-left-color: #3498db; }
+        .ai-role.classroom .teaching-point { border-left-color: #e74c3c; }
+
+        .teaching-point strong {
+            color: #2d3436;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* 크롬 스타일 모달 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(8px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .chrome-modal {
+            background: #f1f3f4;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 1100px;
+            max-height: 85vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* 크롬 헤더 */
+        .chrome-header {
+            background: #e8eaed;
+            border-bottom: 1px solid #dadce0;
+            padding: 0;
+        }
+
+        .chrome-tabs {
+            display: flex;
+            padding: 8px 8px 0 8px;
+        }
+
+        .chrome-tab {
+            background: #f1f3f4;
+            border-radius: 8px 8px 0 0;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 220px;
+            max-width: 300px;
+            border: 1px solid #dadce0;
+            border-bottom: none;
+            position: relative;
+        }
+
+        .chrome-tab.active {
+            background: #fff;
+        }
+
+        .tab-icon {
+            color: #5f6368;
+        }
+
+        .tab-icon i {
+            font-size: 12px;
+        }
+
+        .tab-title {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500;
+            color: #202124;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .tab-close {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: #5f6368;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .tab-close:hover {
+            background: #e8eaed;
+            color: #202124;
+        }
+
+        .tab-close i {
+            font-size: 12px;
+        }
+
+        /* 크롬 컨텐츠 */
+        .chrome-content {
+            background: white;
+            padding: 60px 40px;
+            max-height: calc(85vh - 60px);
+            overflow-y: auto;
+        }
+
+        .chrome-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .chrome-content::-webkit-scrollbar-track {
+            background: #f1f3f4;
+        }
+
+        .chrome-content::-webkit-scrollbar-thumb {
+            background: #dadce0;
+            border-radius: 5px;
+        }
+
+        .chrome-content::-webkit-scrollbar-thumb:hover {
+            background: #bdc1c6;
+        }
+
+        /* 크롬 새 탭 스타일 도구 그리드 */
+        .tools-grid-chrome {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 25px 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .chrome-tool {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: transparent;
+        }
+
+        .chrome-tool:hover {
+            background: #f8f9fa;
+        }
+
+        .chrome-tool:active {
+            transform: scale(0.95);
+        }
+
+        .chrome-tool-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .chrome-tool:hover .chrome-tool-icon {
+            transform: scale(1.1);
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.4);
+        }
+
+        .chrome-tool-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .chrome-tool-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: #202124;
+            text-align: center;
+            line-height: 1.4;
+            max-width: 110px;
+            word-break: break-word;
+        }
+
+        /* 도구 개수 배지 */
+        .tool-count {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 4px;
+            vertical-align: middle;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 1400px) {
+            .ai-roles {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .ai-roles {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tools-grid-chrome {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 25px 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1.1rem;
+            }
+            
+            .ai-roles {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .center-student {
+                position: static;
+                transform: none;
+                margin-bottom: 40px;
+            }
+            
+            .chrome-modal {
+                width: 95%;
+                max-height: 90vh;
+            }
+            
+            .chrome-content {
+                padding: 40px 25px;
+            }
+            
+            .tools-grid-chrome {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+                gap: 20px 10px;
+            }
+            
+            .chrome-tool-icon {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .chrome-tool-icon i {
+                font-size: 1.6rem;
+            }
+            
+            .chrome-tool-name {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 15px;
+                margin-bottom: 30px;
+            }
+            
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .header p {
+                font-size: 0.95rem;
+            }
+            
+            .ai-role {
+                padding: 25px 20px;
+            }
+            
+            .role-character {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 20px;
+            }
+            
+            .role-character i {
+                font-size: 2.2rem;
+            }
+            
+            .ai-role h3 {
+                font-size: 1.4rem;
+            }
+            
+            .role-description {
+                font-size: 0.9rem;
+            }
+            
+            .chrome-tab {
+                min-width: 180px;
+                padding: 8px 12px;
+            }
+            
+            .tab-title {
+                font-size: 13px;
+            }
+            
+            .chrome-content {
+                padding: 30px 20px;
+            }
+            
+            .tools-grid-chrome {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-robot"></i> 2026년 AI 에듀테크 사이트</h1>
+            <p>7가지 카테고리와  에듀테크 도구를 한눈에</p>
+        </header>
+
+        <main class="main-content">
+            <!-- 중앙 학생 아이콘 -->
+            <div class="center-student">
+                <div class="student-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="student-label">학습자</div>
+            </div>
+
+            <!-- AI 역할 섹션 -->
+            <div class="ai-roles">
+                <!-- AI 튜터 -->
+                <div class="ai-role tutor" data-role="tutor">
+                    <div class="role-character">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>AI 튜터</h3>
+                    <p class="role-description">학생 개별 수준 진단 → 문제 추천 → 학습 진도 관리</p>
+                    <div class="teaching-point">
+                        <strong>✔ 수업 포인트:</strong><br>
+                        형성평가 후 개별 과제 자동 분기<br>
+                        보충·심화 학생 분리 수업에 매우 강력
+                    </div>
+                </div>
+
+                <!-- AI 에이전트 -->
+                <div class="ai-role agent" data-role="agent">
+                    <div class="role-character">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI 에이전트</h3>
+                    <p class="role-description">일정·과제·자료·수업 운영을 '관리자'처럼 처리</p>
+                    <div class="teaching-point">
+                        <strong>✔ 수업 포인트:</strong><br>
+                        수행평가, 프로젝트 수업에서 교사 행정 부담 대폭 감소<br>
+                        "수업은 인간이, 관리는 AI가"
+                    </div>
+                </div>
+
+                <!-- AI 어시스턴트 -->
+                <div class="ai-role assistant" data-role="assistant">
+                    <div class="role-character">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>AI 어시스턴트</h3>
+                    <p class="role-description">학생 머릿속 '즉시 호출되는 도움말'</p>
+                    <div class="teaching-point">
+                        <strong>✔ 수업 포인트:</strong><br>
+                        정보 질문 → 사고 질문으로 질문 수준 끌어올리기<br>
+                        "검색 금지"보다 AI 질문 설계 능력 지도에 적합
+                    </div>
+                </div>
+
+                <!-- 생성형 AI -->
+                <div class="ai-role generative" data-role="generative">
+                    <div class="role-character">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>생성형 AI</h3>
+                    <p class="role-description">텍스트·이미지·영상·음악 생성</p>
+                    <div class="teaching-point">
+                        <strong>✔ 수업 포인트:</strong><br>
+                        즉각 보상 → 학습 지속성 증가<br>
+                        특히 학습 의욕 낮은 학생들에게 효과적
+                    </div>
+                </div>
+
+                <!-- AI 퍼실리테이터 -->
+                <div class="ai-role facilitator" data-role="facilitator">
+                    <div class="role-character">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>AI 퍼실리테이터</h3>
+                    <p class="role-description">수업 중 '대화'를 돕는 AI, 질문·응답·토론 촉진</p>
+                    <div class="teaching-point">
+                        <strong>✔ 수업 포인트:</strong><br>
+                        비언어적 발언 채널 통해 참여 유도<br>
+                        토론·질문 중심 수업에 최적화
+                    </div>
+                </div>
+
+                <!-- AI 코치 -->
+                <div class="ai-role coach" data-role="coach">
+                    <div class="role-character">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>AI 코치</h3>
+                    <p class="role-description">학습 태도 진단 + 피드백 + 보상</p>
+                    <div class="teaching-point">
+                        <strong>✔ 수업 포인트:</strong><br>
+                        즉각 보상 → 학습 지속성 증가<br>
+                        특히 학습 의욕 낮은 학생들에게 효과적
+                    </div>
+                </div>
+
+                <!-- 수업용(학생 계정 필요) -->
+                <div class="ai-role classroom" data-role="classroom">
+                    <div class="role-character">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>수업용</h3>
+                    <p class="role-description">교사와 학생이 함께 사용하는 수업 전용 플랫폼 <span class="tool-count">46개+</span></p>
+                    <div class="teaching-point">
+                        <strong>✔ 수업 포인트:</strong><br>
+                        학생 계정이 필요한 플랫폼들<br>
+                        교사와 학생 간 실시간 상호작용 및 학습 관리에 최적화
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 크롬 스타일 모달 -->
+    <div class="modal-overlay" id="modalOverlay" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.75); align-items: center; justify-content: center; z-index: 9999;">
+        <div class="chrome-modal" style="background: #f1f3f4; border-radius: 12px; width: 90%; max-width: 1100px; max-height: 85vh; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);">
+            <div class="chrome-header">
+                <div class="chrome-tabs">
+                    <div class="chrome-tab active">
+                        <span class="tab-icon"><i class="fas fa-circle"></i></span>
+                        <span class="tab-title" id="modalTitle">새 탭</span>
+                        <button class="tab-close" id="closeModal"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="chrome-content">
+                <div class="tools-grid-chrome" id="modalContent">
+                    <!-- 동적으로 생성될 아이콘들 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // AI 역할별 도구 데이터
+        const roleTools = {
+            tutor: [
+                { name: 'Hi-learning', url: 'https://hi.goe.go.kr/', icon: 'fas fa-graduation-cap' },
+                { name: 'EBS 단추', url: 'https://ai-plus.ebs.co.kr/', icon: 'fas fa-tv' },
+                { name: '미래앤', url: 'https://aidt.m-teacher.co.kr/', icon: 'fas fa-book' },
+                { name: '비상교육', url: 'https://textbook.visang.com/home', icon: 'fas fa-book-open' },
+                { name: '천재교육', url: 'https://text.tsherpa.co.kr/', icon: 'fas fa-chalkboard-teacher' },
+                { name: 'snorkl', url: 'https://snorkl.app/', icon: 'fas fa-swimmer' }
+            ],
+            agent: [
+                { name: 'Google Workspace', url: 'https://edu.google.com/workspace-for-education/editions/overview/', icon: 'fab fa-google' },
+                { name: 'Google Classroom', url: 'https://classroom.google.com', icon: 'fas fa-school' },
+                { name: 'Notion', url: 'https://www.notion.com/', icon: 'fas fa-sticky-note' },
+                { name: '미래앤', url: 'https://aidt.m-teacher.co.kr/', icon: 'fas fa-book' },
+                { name: '비상 LMS', url: 'https://textbook.visang.com/home', icon: 'fas fa-laptop-code' },
+                { name: '천재교육', url: 'https://text.tsherpa.co.kr/', icon: 'fas fa-chalkboard-teacher' },
+                { name: 'Figma', url: 'https://www.figma.com/ko-kr/', icon: 'fab fa-figma' }
+            ],
+            assistant: [
+                { name: 'Google Notebook LM', url: 'https://notebooklm.google.com', icon: 'fas fa-book-reader' },
+                { name: 'Perplexity', url: 'https://www.perplexity.ai', icon: 'fas fa-search' },
+                { name: 'ChatGPT', url: 'https://chatgpt.com', icon: 'fas fa-comment-dots' },
+                { name: 'Gemini', url: 'https://gemini.google.com/app?hl=ko', icon: 'fas fa-gem' },
+                { name: 'Claude', url: 'https://claude.ai', icon: 'fas fa-robot' },
+                { name: 'Wrtn', url: 'https://wrtn.ai/', icon: 'fas fa-pen-fancy' },
+                { name: 'Grok', url: 'https://grok.com/', icon: 'fas fa-brain' },
+                { name: 'Genspark', url: 'https://www.genspark.ai/', icon: 'fas fa-sparkles' }
+            ],
+            generative: [
+                { name: 'Canva', url: 'https://www.canva.com/ko_kr/', icon: 'fas fa-paint-brush' },
+                { name: '미리캔버스', url: 'https://www.miricanvas.com/ko/', icon: 'fas fa-palette' },
+                { name: 'Carat', url: 'https://carat.im/', icon: 'fas fa-gem' },
+                { name: 'Tooning', url: 'https://tooning.io/', icon: 'fas fa-film' },
+                { name: 'Suno', url: 'https://suno.com/home', icon: 'fas fa-music' },
+                { name: 'Google AI Studio', url: 'https://aistudio.google.com/prompts/new_chat', icon: 'fab fa-google' },
+                { name: 'Clova.ai', url: 'https://clova.ai/', icon: 'fas fa-microphone-alt' },
+                { name: 'Genspark', url: 'https://www.genspark.ai/', icon: 'fas fa-sparkles' },
+                { name: 'Wrtn', url: 'https://wrtn.ai/', icon: 'fas fa-pen-fancy' },
+                { name: 'QuizN', url: 'https://quizn.show/', icon: 'fas fa-question-circle' },
+                { name: '클래스툴', url: 'https://ctool.co.kr/', icon: 'fas fa-tools' },
+                { name: 'Roboflow', url: 'https://roboflow.com/', icon: 'fas fa-robot' }
+            ],
+            facilitator: [
+                { name: 'Padlet', url: 'https://padlet.com/', icon: 'fas fa-thumbtack' },
+                { name: 'Mentimeter', url: 'https://www.mentimeter.com/', icon: 'fas fa-poll' },
+                { name: 'Slido', url: 'https://www.slido.com/', icon: 'fas fa-comments' },
+                { name: 'Teachable Machine', url: 'https://teachablemachine.withgoogle.com/', icon: 'fas fa-brain' },
+                { name: 'Thetawave', url: 'https://thetawave.ai/ko/', icon: 'fas fa-wave-square' },
+                { name: 'Brisk Teaching', url: 'https://www.briskteaching.com/ko', icon: 'fas fa-chalkboard' },
+                { name: 'Roboflow', url: 'https://roboflow.com/', icon: 'fas fa-robot' },
+                { name: 'Pear Deck', url: 'https://www.peardeck.com/', icon: 'fas fa-presentation' },
+                { name: 'Flourish', url: 'https://flourish.studio/', icon: 'fas fa-chart-line' }
+            ],
+            coach: [
+                { name: 'Snorkl', url: 'https://snorkl.app/', icon: 'fas fa-swimmer' },
+                { name: 'Classcard', url: 'https://www.classcard.net/', icon: 'fas fa-id-card' },
+                { name: 'Quizlet', url: 'https://quizlet.com/ko', icon: 'fas fa-layer-group' },
+                { name: 'Kahoot', url: 'https://kahoot.com', icon: 'fas fa-gamepad' },
+                { name: 'Blooket', url: 'https://www.blooket.com/', icon: 'fas fa-dice' },
+                { name: 'QuizN', url: 'https://quizn.show/', icon: 'fas fa-question-circle' },
+                { name: 'Plickers', url: 'https://get.plickers.com/', icon: 'fas fa-qrcode' },
+                { name: 'Wordwall', url: 'https://wordwall.net/ko', icon: 'fas fa-spell-check' },
+                { name: '클래스툴', url: 'https://ctool.co.kr/', icon: 'fas fa-toolbox' },
+                { name: '띵커벨', url: 'https://www.tkbell.co.kr/', icon: 'fas fa-bell' }
+            ],
+            classroom: [
+                { name: 'Hi-learning', url: 'https://hi.goe.go.kr/', icon: 'fas fa-graduation-cap' },
+                { name: 'EBS 단추', url: 'https://ai-plus.ebs.co.kr/', icon: 'fas fa-tv' },
+                { name: '미래앤', url: 'https://aidt.m-teacher.co.kr/', icon: 'fas fa-book' },
+                { name: '비상교육', url: 'https://textbook.visang.com/home', icon: 'fas fa-book-open' },
+                { name: '천재교육', url: 'https://text.tsherpa.co.kr/', icon: 'fas fa-chalkboard-teacher' },
+                { name: 'Google Workspace for Education', url: 'https://edu.google.com/workspace-for-education/editions/overview/', icon: 'fab fa-google' },
+                { name: 'wrtn', url: 'https://wrtn.ai/', icon: 'fas fa-pen-fancy' },
+                { name: 'Canva', url: 'https://www.canva.com/ko_kr/', icon: 'fas fa-palette' },
+                { name: 'quizn', url: 'https://quizn.show/', icon: 'fas fa-question-circle' },
+                { name: 'Padlet', url: 'https://padlet.com/', icon: 'fas fa-columns' },
+                { name: 'Pear Deck', url: 'https://www.peardeck.com/', icon: 'fas fa-chart-line' },
+                { name: 'Classcard', url: 'https://www.classcard.net/', icon: 'fas fa-id-card' },
+                { name: 'Wordwall', url: 'https://wordwall.net/ko', icon: 'fas fa-puzzle-piece' },
+                { name: '띵커벨', url: 'https://www.tkbell.co.kr/', icon: 'fas fa-bell' },
+                { name: '멘티미터', url: 'https://www.mentimeter.com/', icon: 'fas fa-poll' },
+                { name: '클리포', url: 'https://clipo.ai/', icon: 'fas fa-video' },
+                { name: '북크리에이터', url: 'https://bookcreator.com/', icon: 'fas fa-book-reader' },
+                { name: '알지오매스', url: 'https://www.algeomath.kr/', icon: 'fas fa-calculator' },
+                { name: '꿈잇다', url: 'https://jinro.goedu.kr/', icon: 'fas fa-lightbulb' },
+                { name: '엔트리', url: 'https://playentry.org/', icon: 'fas fa-code' },
+                { name: '앱인벤터', url: 'https://appinventor.mit.edu/', icon: 'fas fa-mobile-alt' },
+                { name: '마이크로비트', url: 'https://microbit.org/ko/code/', icon: 'fas fa-microchip' },
+               { name: '니어팟', url: 'https://nearpod.com/', icon: 'fas fa-desktop' },
+                { name: '국가기초학력지원포털', url: 'https://www.basics.go.kr/bgportal/main', icon: 'fas fa-desktop' },
+                { name: '금성출판사 티칭허브', url: 'https://thub.kumsung.co.kr/main.do', icon: 'fas fa-desktop' },
+                { name: '네이버 웨일스페이스', url: 'https://whalespace.io/', icon: 'fas fa-desktop' },
+                { name: '독서로', url: 'https://read365.edunet.net/', icon: 'fas fa-desktop' },
+                { name: '동아출판 AI 디지털 교육자료', url: 'https://aidt.douclass.com/main.donga', icon: 'fas fa-desktop' },
+                { name: '디비디비스쿨', url: 'https://www.dbdbschool.kr/', icon: 'fas fa-desktop' },
+                { name: '리딩게이트', url: 'https://www.readinggate.com/ko/home/main', icon: 'fas fa-desktop' },
+                { name: '메이크 코드', url: 'https://makecode.microbit.org/', icon: 'fas fa-desktop' },
+                { name: '브루(Vrew)', url: 'https://vrew.ai/ko/', icon: 'fas fa-desktop' },
+                { name: '미리캔버스', url: 'https://www.miricanvas.com/ko', icon: 'fas fa-desktop' },
+                { name: '비버 챌린지', url: 'https://www.bebras.kr/', icon: 'fas fa-desktop' },
+                { name: '온라인코딩파티', url: 'https://www.software.kr/home/kor/contents.do?menuPos=95', icon: 'fas fa-desktop' },
+                { name: '카훗', url: 'https://kahoot.com/ko/', icon: 'fas fa-desktop' },
+                { name: '커리어넷', url: 'https://www.career.go.kr/cloud/w/main/home', icon: 'fas fa-desktop' },
+                { name: '피스켈(Piskel)', url: 'https://www.piskelapp.com/', icon: 'fas fa-desktop' },
+                { name: '한컴독스', url: 'https://www.hancomdocs.com/ko/', icon: 'fas fa-desktop' },
+                { name: 'MS 365', url: 'https://www.microsoft.com/ko-kr/microsoft-365', icon: 'fas fa-desktop' },
+                { name: '노션', url: 'https://www.notion.com/ko', icon: 'fas fa-desktop' },
+                { name: '투닝', url: 'https://tooning.io/', icon: 'fas fa-desktop' }
+]
+}; // 
+
+        const roleTitles = {
+            tutor: 'AI 튜터',
+            agent: 'AI 에이전트',
+            assistant: 'AI 어시스턴트',
+            generative: '생성형 AI',
+            facilitator: 'AI 퍼실리테이터',
+            coach: 'AI 코치',
+            classroom: '수업용 (학생 계정 필요)'
+        };
+
+        // 모달 열기
+        function openModal(role) {
+            console.log('Opening modal for:', role);
+            const tools = roleTools[role];
+            const title = roleTitles[role];
+            const modalContent = document.getElementById('modalContent');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalOverlay = document.getElementById('modalOverlay');
+            
+            if (!modalContent || !modalTitle || !modalOverlay) {
+                console.error('Modal elements not found!');
+                return;
+            }
+            
+            modalTitle.textContent = title;
+            
+            let html = '';
+            tools.forEach(tool => {
+                html += `
+                    <div class="chrome-tool" onclick="window.open('${tool.url}', '_blank')">
+                        <div class="chrome-tool-icon">
+                            <i class="${tool.icon}"></i>
+                        </div>
+                        <div class="chrome-tool-name">${tool.name}</div>
+                    </div>
+                `;
+            });
+            
+            modalContent.innerHTML = html;
+            
+            // 인라인 스타일로 강제 표시
+            modalOverlay.style.display = 'flex';
+            modalOverlay.classList.add('active');
+            
+            console.log('Modal opened successfully');
+        }
+
+        // 모달 닫기
+        function closeModal() {
+            const modalOverlay = document.getElementById('modalOverlay');
+            if (modalOverlay) {
+                modalOverlay.style.display = 'none';
+                modalOverlay.classList.remove('active');
+            }
+        }
+
+        // 이벤트 리스너
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            
+            // AI 역할 카드 클릭
+            const roleCards = document.querySelectorAll('.ai-role');
+            console.log('Found role cards:', roleCards.length);
+            
+            roleCards.forEach(roleCard => {
+                roleCard.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const role = this.getAttribute('data-role');
+                    console.log('Card clicked:', role);
+                    openModal(role);
+                });
+            });
+
+            // 모달 닫기 버튼
+            const closeBtn = document.getElementById('closeModal');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeModal();
+                });
+            }
+
+            // 오버레이 클릭
+            const overlay = document.getElementById('modalOverlay');
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeModal();
+                    }
+                });
+            }
+
+            // ESC 키
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+            
+            console.log('Initialization complete');
+        });
+    </script>
+</body>
+</html>
